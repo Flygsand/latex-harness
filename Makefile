@@ -3,7 +3,7 @@
 MARK	= `tput smso`
 ENDMARK	= `tput rmso`
 
-LATEX	= latex -shell-escape
+LATEX	= latex -shell-escape -interaction=nonstopmode
 CHECKER = chktex -q -f "(%k) %f:%l:%c \"%r${MARK}%s${ENDMARK}%t\" - %m%N"
 BIBTEX	= bibtex
 DVIPDF	= dvipdf
@@ -16,7 +16,7 @@ all 	: $(TRG)
 
 test	: $(SRC)
 	  @$(eval $@_OUTDIR := $(shell mktemp -d))
-	  @$(LATEX) -interaction=nonstopmode -output-dir=$($@_OUTDIR) $<	
+	  @$(LATEX) -output-dir=$($@_OUTDIR) $<	
 	  @-rm -rf $@_OUTDIR
 
 analyze	: $(SRC)
