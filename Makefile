@@ -25,7 +25,7 @@ analyze	: $(SRC)
 clean	: 
 	  -rm -f $(TRG) $(PDF) $(TRG:%.dvi=%.log) $(TRG:%.dvi=%.toc) $(TRG:%.dvi=%.lof) \
 		 $(TRG:%.dvi=%.lot) $(TRG:%.dvi=%.aux) $(TRG:%.dvi=%.idx) $(TRG:%.dvi=%.ind) \
-		 $(TRG:%.dvi=%.ilg)
+		 $(TRG:%.dvi=%.ilg) *.pyg
 
 $(TRG)	: %.dvi : %.tex
 	  @$(LATEX) $<
