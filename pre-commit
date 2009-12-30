@@ -1,0 +1,39 @@
+#!/bin/bash
+
+BOLD="\033[1m"
+RED="\033[31m"
+GREEN="\033[32m"
+YELLOW="\033[33m"
+CLEAR="\033[0m"
+
+function title {
+    echo -e "${BOLD}${YELLOW}-->${CLEAR} ${BOLD}${1}${CLEAR}"
+}
+
+title "Running 'make test'"
+make test
+
+if [ $? -eq 0 ]
+then
+    echo -e "${BOLD}${GREEN}All OK!${CLEAR}"
+else
+    echo -e "${BOLD}${RED}Failed, bailing out.${CLEAR}"
+    exit 1
+fi
+
+echo
+
+title "Performing statical analysis"
+warnings=$(make analyze)
+
+if [ -z "${warnings}" ]
+then
+    echo -e "${BOLD}${GREEN}All OK!${CLEAR}"
+else
+    echo "${warnings}"
+    echo -e "${BOLD}${YELLOW}Warnings were found.${CLEAR}"
+fi
+
+echo
+
+title "Committing"
