@@ -7,6 +7,7 @@ LATEX	= latex -shell-escape -interaction=nonstopmode
 CHECKER = chktex -q -f "(%k) %f:%l:%c \"%r${MARK}%s${ENDMARK}%t\" - %m%N"
 BIBTEX	= bibtex
 DVIPDF	= dvipdf
+VIEWER  = evince
 
 SRC	:= $(shell grep -El '^[^%]*\\begin\{document\}' *.tex)
 TRG	= $(SRC:%.tex=%.dvi)
@@ -34,3 +35,7 @@ $(PDF)	: %.pdf : %.dvi
 	  @$(DVIPDF) $< $@
 
 pdf	: $(PDF)
+
+showpdf	: $(PDF)
+	  $(VIEWER) $^
+	  
