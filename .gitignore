@@ -1,2 +1,14 @@
 *~
-*.tex
+*.pdf
+*.dvi
+*.log
+*.toc
+*.lof
+*.lot
+*.aux
+*.idx
+*.ind
+*.ilg
+*.pyg
+*.bbl
+*.blg
