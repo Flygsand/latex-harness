@@ -1,0 +1,20 @@
+--- FindErrs.c.orig	2009-12-31 03:21:15.000000000 +0100
++++ FindErrs.c	2009-12-31 03:24:09.000000000 +0100
+@@ -1314,6 +1314,7 @@
+  *  %l  - Line number of error
+  *  %m  - warning Message
+  *  %n  - warning Number
++ *  %N  - newline
+  *  %u  - an Underlining line (like the one which appears when using -v1)
+  *  %r  - part of line in front of error ('S' - 1)
+  *  %s  - part of line which contains error (String) *  %t  - part of line after error ('S' + 1)
+@@ -1421,6 +1422,9 @@
+                     case 'n':
+                         fprintf(OutputFile, "%d", Error);
+                         break;
++                    case 'N':
++                        fputc('\n', OutputFile);
++                        break;
+                     case 'u':
+                         sfmemset(PrintBuffer, ' ', (long) Position);
+ 
